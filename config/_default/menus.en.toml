@@ -1,8 +1,8 @@
 
-# [[main]]
-# name = "Home"
-# url  = "/"
-# weight = 10
+[[main]]
+name = "Home"
+url  = "/"
+weight = 10
 
 # [[main]]
 # name = "Guides"
@@ -39,7 +39,7 @@
 name = "AWS Cloud Architecture"
 identifier = "aws"
 url = "/aws/"
-weight = 22
+weight = 20
 
 [[main]]
 name = "SAA Foundational Architecture"
@@ -53,43 +53,43 @@ parent = "aws"
 url = "/aws/sap/"
 weight = 2
 
-# 一级菜单：Azure
-[[main]]
-name = "Azure Cloud Architecture"
-identifier = "azure"
-url = "/azure/"
-weight = 23
+# # 一级菜单：Azure
+# [[main]]
+# name = "Azure Cloud Architecture"
+# identifier = "azure"
+# url = "/azure/"
+# weight = 23
 
-[[main]]
-name = "AZ-104 Basic Administration"
-parent = "azure"
-url = "/azure/az-104/"
-weight = 1
+# [[main]]
+# name = "AZ-104 Basic Administration"
+# parent = "azure"
+# url = "/azure/az-104/"
+# weight = 1
 
-[[main]]
-name = "AZ-305 Expert Design"
-parent = "azure"
-url = "/azure/az-305/"
-weight = 2
+# [[main]]
+# name = "AZ-305 Expert Design"
+# parent = "azure"
+# url = "/azure/az-305/"
+# weight = 2
 
-# 一级菜单：GCP
-[[main]]
-name = "Google Cloud Architecture"
-identifier = "gcp"
-url = "/gcp/"
-weight = 24
+# # 一级菜单：GCP
+# [[main]]
+# name = "Google Cloud Architecture"
+# identifier = "gcp"
+# url = "/gcp/"
+# weight = 24
 
-[[main]]
-name = "ACE Foundational Certification"
-parent = "gcp"
-url = "/gcp/ace/"
-weight = 1
+# [[main]]
+# name = "ACE Foundational Certification"
+# parent = "gcp"
+# url = "/gcp/ace/"
+# weight = 1
 
-[[main]]
-name = "PCA Architectural Decision-Making"
-parent = "gcp"
-url = "/gcp/pca/"
-weight = 2
+# [[main]]
+# name = "PCA Architectural Decision-Making"
+# parent = "gcp"
+# url = "/gcp/pca/"
+# weight = 2
 
 # 一级菜单：Governance
 # [[main]]
@@ -111,16 +111,22 @@ weight = 2
 # weight = 2
 
 # 一级菜单：Categories
-# [[main]]
-# name = "Categories"
-# pageRef  = "categories"
-# weight = 30
+[[main]]
+name = "Categories"
+pageRef  = "categories"
+weight = 30
 
-# [[main]]
-# name = "Tags"
-# pageRef = "tags"
-# weight = 40
+[[main]]
+name = "Tags"
+pageRef = "tags"
+weight = 40
 
+[[main]]
+name = "Legal"
+pageRef = "legal"
+weight = 99
+
+# footer menu
 [[footer]]
   name = "Tags"
   pageRef = "tags"

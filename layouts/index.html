@@ -1,182 +1,73 @@
 {{ define "main" }}
 
-<!-- Hero Section -->
-<section class="bg-gray-900 text-white py-20 px-6">
-  <div class="max-w-5xl mx-auto text-center">
-    <h1 class="text-4xl md:text-6xl font-bold mb-6">
-      ArchitectDecisionHub.com
-    </h1>
-    <p class="text-xl md:text-2xl mb-10">
-      Multi-Cloud Architecture & Cloud Economics for Senior Cloud Practitioners
-    </p>
-    <a 
-      href="/aws/sap/"
-      class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg text-lg font-semibold"
-    >
-      Start with AWS SAP Practice Questions →
+<!-- <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Featured AI Tools Directory</h1>
+    
+    {{ $tools := $.Site.Data.tools }}
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range $tools }}
+            {{ partial "tool-card.html" . }}
+        {{ end }}
+    </div>
+
+    <div class="text-center mt-12">
+        <a href="/tools/coding-assistants/" class="text-lg text-indigo-600 hover:underline">
+            Browse All Categories →
+        </a>
+    </div>
+
+</div> -->
+
+<section class="mx-auto max-w-3xl">
+  <h1 class="text-3xl font-bold mb-6">Headlines</h1>
+
+  <!-- Featured Guide (Optional) -->
+  {{ $featured := first 3 (where .Site.RegularPages "Params.featured" true) }}
+  {{ range $featured }}
+    <article class="mb-10 p-4 rounded-lg shadow-sm border border-gray-200">
+      <a href="{{ .RelPermalink }}">
+        <h2 class="text-2xl font-bold mb-2">{{ .Title }}</h2>
+        <p>{{ .Summary }}</p>
+        <p class="text-sm text-gray-500">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</p>
+      </a>
+    </article>
+  {{ end }}
+
+  <!-- 显示 categories 文章 -->
+  <!-- <h2 class="text-3xl font-bold mb-6 mt-12">All Cagegories</h2>
+  {{ $basicsSection := .Site.GetPage "section" "categories" }} {{ if
+  $basicsSection }} {{ range $basicsSection.Pages.ByDate.Reverse }}
+  <article class="mb-10 p-4 rounded-lg shadow-sm border border-gray-200">
+    <a href="{{ .RelPermalink }}">
+      <h2 class="text-2xl font-bold mb-2">{{ .Title }}</h2>
+      <p>{{ .Summary }}</p>
+      <p class="text-sm text-gray-500">
+        {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read
+      </p>
     </a>
-  </div>
+  </article>
+  {{ end }} {{ end }} -->
+
+  <!-- 精准获取 guides 目录的文章 -->
+  <h2 class="text-3xl font-bold mb-6 mt-12">All Guides</h2>
+  {{ $guidesSection := .Site.GetPage "section" "aws" }}
+   {{ if $guidesSection
+  }} {{ range $guidesSection.Pages.ByDate.Reverse }}
+  <!-- 按日期倒序显示 -->
+  <article class="mb-10 p-4 rounded-lg shadow-sm border border-gray-200">
+    <a href="{{ .RelPermalink }}">
+      <h2 class="text-2xl font-bold mb-2">{{ .Title }}</h2>
+      <p>{{ .Summary }}</p>
+      <p class="text-sm text-gray-500">
+        {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read
+      </p>
+    </a>
+  </article>
+  {{ end }} {{ else }}
+  <p>No guides available yet.</p>
+  {{ end }}
+
 </section>
-
-<!-- Cloud Provider Hub -->
-<section class="py-16 bg-white px-6">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold text-center mb-12">Cloud Provider Hub</h2>
-
-    <div class="grid md:grid-cols-3 gap-8 text-center">
-      <a href="/aws/" class="p-10 border rounded-xl shadow hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold mb-4">AWS</h3>
-        <p>Architecture · SAP · SAA · DevOps · Security</p>
-      </a>
-
-      <a href="/azure/" class="p-10 border rounded-xl shadow hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold mb-4">Azure</h3>
-        <p>AZ-305 · AZ-104 · Security · Governance</p>
-      </a>
-
-      <a href="/gcp/" class="p-10 border rounded-xl shadow hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold mb-4">GCP</h3>
-        <p>PCA · Data Engineer · Networking</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Daily Challenges -->
-<section class="py-16 bg-gray-50 px-6">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-10 text-center">Daily Challenges</h2>
-
-    <div class="grid md:grid-cols-3 gap-10">
-
-      <!-- AWS Fresh Posts -->
-      <div>
-        <h3 class="text-xl font-bold mb-4">AWS — Today’s Questions</h3>
-        {{ range first 3 (where .Site.RegularPages "Section" "aws") }}
-          <div class="mb-3">
-            <a href="{{ .RelPermalink }}" class="text-blue-600 hover:underline">
-              {{ .Title }}
-            </a>
-          </div>
-        {{ end }}
-      </div>
-
-      <!-- Azure Fresh Posts -->
-      <div>
-        <h3 class="text-xl font-bold mb-4">Azure — Today’s Questions</h3>
-        {{ range first 3 (where .Site.RegularPages "Section" "azure") }}
-          <div class="mb-3">
-            <a href="{{ .RelPermalink }}" class="text-blue-600 hover:underline">
-              {{ .Title }}
-            </a>
-          </div>
-        {{ end }}
-      </div>
-
-      <!-- GCP Fresh Posts -->
-      <div>
-        <h3 class="text-xl font-bold mb-4">GCP — Today’s Questions</h3>
-        {{ range first 3 (where .Site.RegularPages "Section" "gcp") }}
-          <div class="mb-3">
-            <a href="{{ .RelPermalink }}" class="text-blue-600 hover:underline">
-              {{ .Title }}
-            </a>
-          </div>
-        {{ end }}
-      </div>
-
-    </div>
-
-    <div class="text-center mt-10">
-      <a href="/daily/" class="text-blue-700 font-semibold hover:underline">
-        View All Daily Challenges →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Multi-Cloud Architecture Section -->
-<section class="py-16 bg-white px-6">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-10 text-center">
-      Multi-Cloud Architecture
-    </h2>
-
-    <div class="grid md:grid-cols-2 gap-10">
-      {{ range first 4 (where .Site.RegularPages "Section" "multicloud") }}
-        <article class="p-6 border rounded-xl hover:shadow-lg transition">
-          <a href="{{ .RelPermalink }}">
-            <h3 class="text-2xl font-semibold mb-3">{{ .Title }}</h3>
-            <p class="text-gray-600">{{ .Summary }}</p>
-          </a>
-        </article>
-      {{ end }}
-    </div>
-
-    <div class="text-center mt-10">
-      <a href="/multicloud/" class="text-blue-700 font-semibold hover:underline">
-        View More Multi-Cloud Guides →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Cost Optimization -->
-<section class="py-16 bg-gray-50 px-6">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-10 text-center">
-      Cloud Cost Optimization
-    </h2>
-
-    <div class="grid md:grid-cols-2 gap-10">
-      {{ range first 4 (where .Site.RegularPages "Section" "finops") }}
-        <article class="p-6 border rounded-xl hover:shadow-lg transition">
-          <a href="{{ .RelPermalink }}">
-            <h3 class="text-2xl font-semibold mb-3">{{ .Title }}</h3>
-            <p class="text-gray-600">{{ .Summary }}</p>
-          </a>
-        </article>
-      {{ end }}
-    </div>
-
-    <div class="text-center mt-10">
-      <a href="/finops/" class="text-blue-700 font-semibold hover:underline">
-        View FinOps Guides →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Certifications -->
-<section class="py-16 bg-white px-6">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-10 text-center">Certification Hub</h2>
-
-    <div class="grid md:grid-cols-2 gap-10">
-      {{ range first 4 (where .Site.RegularPages "Section" "certifications") }}
-        <article class="p-6 border rounded-xl hover:shadow-lg transition">
-          <a href="{{ .RelPermalink }}">
-            <h3 class="text-2xl font-semibold mb-3">{{ .Title }}</h3>
-            <p class="text-gray-600">{{ .Summary }}</p>
-          </a>
-        </article>
-      {{ end }}
-    </div>
-
-    <div class="text-center mt-10">
-      <a href="/certifications/" class="text-blue-700 font-semibold hover:underline">
-        View All Certifications →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-gray-900 text-gray-300 py-10 mt-16">
-  <div class="max-w-6xl mx-auto text-center">
-    <p class="text-sm">© {{ now.Year }} ArchitectDecisionHub.com</p>
-    <p class="text-sm">Multi-Cloud Architecture · Cloud Economics · Certifications</p>
-  </div>
-</footer>
 
 {{ end }}
