@@ -1,0 +1,50 @@
+{{/*
+  Partial: guide-card.html
+  Expects a Page (.`) and renders a responsive card with optional image, title, summary, tags and meta
+*/}}
+{{ $p := . }}
+<article class="guide-card bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition duration-200 border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+  <a href="{{ $p.RelPermalink }}" class="block group">
+    {{/* Image / placeholder - ensure top corners are rounded and no visual notches between grid items */}}
+    {{ if $p.Params.featured_image }}
+      <div class="h-44 w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
+        <img src="{{ $p.Params.featured_image }}" alt="{{ $p.Title }}" class="w-full h-full object-cover rounded-t-lg" loading="lazy" />
+      </div>
+    {{ else if $p.Resources.GetMatch "featured*" }}
+      {{ $img := $p.Resources.GetMatch "featured*" }}
+      {{ $thumb := $img.Fill "1200x440 center" }}
+      <div class="h-44 w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ $p.Title }}" class="w-full h-full object-cover rounded-t-lg" loading="lazy" />
+      </div>
+    {{ else }}
+      <div class="h-44 w-full flex items-center justify-center bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800">
+        <svg class="w-12 h-12 text-gray-300 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 11l2 2 4-4 6 6" />
+        </svg>
+      </div>
+    {{ end }}
+
+    <div class="p-4">
+      <h3 class="text-lg font-semibold mb-1 text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-600 transition">{{ $p.Title }}</h3>
+      {{ with $p.Params.tags }}
+        <div class="mb-3 flex flex-wrap gap-2">
+          {{ range first 6 . }}
+            <span class="text-xs px-2 py-0.5 rounded-full bg-transparent border border-neutral-200 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300">{{ . }}</span>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{ with $p.Summary }}
+        <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-3">{{ . }}</p>
+      {{ else }}
+        <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-3">{{ $p.Description | default (truncate $p.Plain 160) }}</p>
+      {{ end }}
+
+      <div class="text-xs text-neutral-500 dark:text-neutral-400">
+        {{ $fmt := $p.Date.Format "January 2, 2006" }}
+        {{ printf "%s · %d min read" $fmt $p.ReadingTime }}
+      </div>
+    </div>
+  </a>
+</article>

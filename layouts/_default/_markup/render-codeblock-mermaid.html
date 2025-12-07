@@ -1,0 +1,5 @@
+<div class="mermaid">
+    {{ .Inner }}
+</div>
+{{/* 通过设置一个页面 Scratch，让主题知道需要加载 Mermaid JS 库 */}}
+{{ .Page.Scratch.Set "hasMermaid" true }}

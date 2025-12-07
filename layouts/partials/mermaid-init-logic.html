@@ -1,0 +1,44 @@
+{{ $content := .Content }}
+
+{{ $mermaidExists := or 
+    (.Page.Store.Get "hasMermaid")             
+    (strings.Contains $content "```mermaid")    
+    (strings.Contains $content "{{< mermaid >}}") 
+}}
+
+{{ if $mermaidExists }}
+    {{/* 1. 从 CDN 加载 Mermaid 核心库 */}}
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js"></script>
+
+    {{/* 2. 加载您的自定义初始化脚本 (assets/js/mermaid.js) */}}
+    {{ $mermaidJS := resources.Get "js/mermaid.js" }}
+    {{ $mermaidJS = $mermaidJS | resources.Minify | resources.Fingerprint (site.Params.fingerprintAlgorithm | default "sha512") }}
+
+    <script
+        type="text/javascript"
+        src="{{ $mermaidJS.RelPermalink }}"
+        integrity="{{ $mermaidJS.Data.Integrity }}"
+    ></script>
+    
+    {{/* 3. 初始化逻辑 */}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var isDark = document.body.classList.contains('dark');
+            
+            // 确保在渲染前调用正确的初始化函数
+            if (isDark) {
+                initMermaidDark(); 
+            } else {
+                initMermaidLight(); 
+            }
+            
+            // 渲染所有 class="mermaid" 的元素
+            setTimeout(function() {
+                if (typeof mermaid !== 'undefined') {
+                    // 这会同时渲染 Shortcode 生成的 div 和 Render Hook 生成的 div
+                    mermaid.init(undefined, ".mermaid"); 
+                }
+            }, 100);
+        });
+    </script>
+{{ end }}

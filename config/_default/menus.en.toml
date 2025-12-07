@@ -1,0 +1,137 @@
+
+# [[main]]
+# name = "Home"
+# url  = "/"
+# weight = 10
+
+# [[main]]
+# name = "Guides"
+# url  = "/guides/"
+# weight = 20
+
+# 一级菜单：LLM Hub
+# [[main]]
+# name = "LLM Hub"
+# identifier = "llm-hub"
+# url = "/llm-hub/"
+# weight = 21
+
+# [[main]]
+# name = "TCO Analysis"
+# parent = "llm-hub"
+# url = "/llm-hub/tco/"
+# weight = 1
+
+# [[main]]
+# name = "LLM Governance"
+# parent = "llm-hub"
+# url = "/llm-hub/llm-governance/"
+# weight = 2
+
+# [[main]]
+# name = "RAG/FT"
+# parent = "llm-hub"
+# url = "/llm-hub/rag-ft/"
+# weight = 3
+
+# 一级菜单：AWS
+[[main]]
+name = "AWS Cloud Architecture"
+identifier = "aws"
+url = "/aws/"
+weight = 22
+
+[[main]]
+name = "SAA Foundational Architecture"
+parent = "aws"
+url = "/aws/saa/"
+weight = 1
+
+[[main]]
+name = "SAP Advanced Decision-Making"
+parent = "aws"
+url = "/aws/sap/"
+weight = 2
+
+# 一级菜单：Azure
+[[main]]
+name = "Azure Cloud Architecture"
+identifier = "azure"
+url = "/azure/"
+weight = 23
+
+[[main]]
+name = "AZ-104 Basic Administration"
+parent = "azure"
+url = "/azure/az-104/"
+weight = 1
+
+[[main]]
+name = "AZ-305 Expert Design"
+parent = "azure"
+url = "/azure/az-305/"
+weight = 2
+
+# 一级菜单：GCP
+[[main]]
+name = "Google Cloud Architecture"
+identifier = "gcp"
+url = "/gcp/"
+weight = 24
+
+[[main]]
+name = "ACE Foundational Certification"
+parent = "gcp"
+url = "/gcp/ace/"
+weight = 1
+
+[[main]]
+name = "PCA Architectural Decision-Making"
+parent = "gcp"
+url = "/gcp/pca/"
+weight = 2
+
+# 一级菜单：Governance
+# [[main]]
+# name = "Governance"
+# identifier = "gov"
+# url = "/gov/"
+# weight = 25
+
+# [[main]]
+# name = "TOGAF Application & Practice Cases"
+# parent = "gov"
+# url = "/gov/togaf/"
+# weight = 1
+
+# [[main]]
+# name = "PMP Project & Risk Management"
+# parent = "gov"
+# url = "/gov/pmp/"
+# weight = 2
+
+# 一级菜单：Categories
+# [[main]]
+# name = "Categories"
+# pageRef  = "categories"
+# weight = 30
+
+# [[main]]
+# name = "Tags"
+# pageRef = "tags"
+# weight = 40
+
+[[footer]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 10
+
+[[footer]]
+  name = "Categories"
+  pageRef = "categories"
+  weight = 20
+
+[[footer]]
+  name = "Legal"
+  url  = "/legal/"
+  weight = 99

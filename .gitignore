@@ -1,0 +1,35 @@
+# Hugo
+public/
+resources/_gen/
+.hugo_build.lock
+
+# local temp files
+.tmp/
+content-temp/
+
+# Node
+node_modules/
+npm-debug.log*
+#package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.backup
+*.old
+
+# Jeff Taakey: ignore local symlinks:
+themes/blowfish

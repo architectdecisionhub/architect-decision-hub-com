@@ -1,0 +1,18 @@
+# data/tools.yaml
+- name: "GitHub Copilot"
+  slug: "github-copilot" # 用于链接到详情页
+  developer: "Microsoft/GitHub"
+  url: "https://github.com/features/copilot"
+  category: "coding-assistants" # 必须与列表页 URL 对应
+  price_tier: "Subscription"
+  rating: 4.9
+  description: "AI pair programmer that suggests code and functions in real-time."
+
+- name: "Midjourney"
+  slug: "midjourney"
+  developer: "Midjourney Inc."
+  url: "https://www.midjourney.com/"
+  category: "image-video-gen"
+  price_tier: "Subscription"
+  rating: 4.8
+  description: "The leading AI art generation tool known for artistic quality."
